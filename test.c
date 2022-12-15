@@ -1,6 +1,7 @@
 //
 // Created by Echo on 2022/12/11.
 //
+
 #include "score.h"
 
 //系统登陆模块
@@ -52,8 +53,8 @@ void PrintMenuSort1() {                      		 //打印排序菜单
     printf("         ┌──────学生信息排序菜单──────────┐       \n");
     printf("         │                                          \n");
     printf("         │            请选择排序方式                   \n");
-    printf("         │\t1.按学号            2.按姓名               \n");
-    printf("         │\t3.按总分            4.显示信息              \n");
+    printf("         │\t1.按学号            2.按姓名(拼音)               \n");
+    printf("         │\t3.按总分(升序)        6.显示排序后信息              \n");
     printf("         │\t0.将返回                                 \n");
     printf("         └─────────────────────────────┘         \n");
 }
@@ -72,6 +73,7 @@ int main(){
     int input = 0;
     int input2 = 0;
     int input3 = 0;
+    char tmp;
     //创建学生体测成绩数据库score,里面包含 date 指针 和 size,capacity
     struct ScoreLib score;
     //初始化数据库
@@ -158,10 +160,17 @@ int main(){
                 clear();
                 break;
             case EXIT:
-                //销毁数据库-释放动态开辟的内存,销毁前保存
-                SaveScoreLib(&score);
-                DestroyScoreLib(&score);
-                printf("退出程序\n");break;
+                printf("输入 y/n 再次确认是否退出:>");
+                scanf(" %c",&tmp);
+                if ((tmp == 'y')||(tmp == 'Y')){
+                    //销毁数据库-释放动态开辟的内存,销毁前保存
+                    SaveScoreLib(&score);
+                    DestroyScoreLib(&score);
+                    printf("退出程序\n");break;
+                }else {
+                    input = 1;
+                    break;
+                }
             default:
                 printf("\t\t\t选择错误!!!\n");
         }

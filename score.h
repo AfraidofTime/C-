@@ -30,7 +30,7 @@ enum Option2{
     SORT_BY_ID,
     SORT_BY_NAME,
     SORT_BY_SCORE,
-    GO_TO_SHOW
+    GO_TO_SHOW = 6
 };
 enum Option3{
     EXIT2,
@@ -69,6 +69,7 @@ void ShowScoreLib(const struct ScoreLib* ps);
 void DelScoreLib(struct ScoreLib* ps);
 
 void SearchByScore(const struct ScoreLib* ps);
+
 void SearchByScoreRank(const struct ScoreLib* ps);
 //修改学生体育成绩
 void ModifyScoreLib(struct ScoreLib* ps);

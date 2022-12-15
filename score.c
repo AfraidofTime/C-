@@ -67,71 +67,61 @@ void LoadScoreLib(struct ScoreLib* ps){
 
 //计算学生体育成绩
 static void AddScoreLib1(struct ScoreLib* ps){
-    if(((ps->data[ps->size].bim)<17.9)) {
+    //计算各项体育项目的成绩
+    if(((ps->data[ps->size].bim)<17.9))
         ps->data[ps->size].BimScore = 80;
-    }if((ps->data[ps->size].bim>=17.9)&&((ps->data[ps->size].bim)<=23.9)){
+    else if ((ps->data[ps->size].bim>=17.9)&&(ps->data[ps->size].bim<=23.9))
         ps->data[ps->size].BimScore = 100;
-    }if((ps->data[ps->size].bim>23.9)&&(ps->data[ps->size].bim<=27.9)){
+    else if ((ps->data[ps->size].bim>23.9)&&(ps->data[ps->size].bim<=27.9))
         ps->data[ps->size].BimScore = 80;
-    }if(ps->data[ps->size].bim>27.9){
+    else
         ps->data[ps->size].BimScore = 60;
-    }if(ps->data[ps->size].bim<=0){
-        ps->data[ps->size].BimScore = 30;
-    }
 
+    //判断为男生
     if ( 0 == strcmp(ps->data[ps->size].sex,"男")){
-        if(ps->data[ps->size].vcp<=3100){
+        if(ps->data[ps->size].vcp<=3100)
             ps->data[ps->size].VcpScore = 30;
-        }if((ps->data[ps->size].vcp>=3101)&&(ps->data[ps->size].vcp<=4180)){
+        else if((ps->data[ps->size].vcp>=3101)&&(ps->data[ps->size].vcp<=4180))
             ps->data[ps->size].VcpScore = 60;
-        }if((ps->data[ps->size].vcp>=4181)&&(ps->data[ps->size].vcp<=4800)){
+        else if((ps->data[ps->size].vcp>=4181)&&(ps->data[ps->size].vcp<=4800))
             ps->data[ps->size].VcpScore = 80;
-        }if(ps->data[ps->size].vcp>4800){
+        else
             ps->data[ps->size].VcpScore = 100;
-        }
 
-        if(ps->data[ps->size].PullSit<=9){
+
+        if(ps->data[ps->size].PullSit<=9)
             ps->data[ps->size].PullSitScore = 30;
-        }if((ps->data[ps->size].PullSit>=10)&&(ps->data[ps->size].PullSit<=15)){
+        else if((ps->data[ps->size].PullSit>=10)&&(ps->data[ps->size].PullSit<=15))
             ps->data[ps->size].PullSitScore = 60;
-        }if((ps->data[ps->size].PullSit>=16)&&(ps->data[ps->size].PullSit<=19)){
+        else if((ps->data[ps->size].PullSit>=16)&&(ps->data[ps->size].PullSit<=19))
             ps->data[ps->size].PullSitScore = 80;
-        }if(ps->data[ps->size].PullSit>19) {
+        else
             ps->data[ps->size].PullSitScore = 100;
-        }
+    }
+    //判断为女生
+    else{
+        if (ps->data[ps->size].vcp <= 2050)
+            ps->data[ps->size].VcpScore = 30;
+        else if ((ps->data[ps->size].vcp >= 2051) && (ps->data[ps->size].vcp <= 3000))
+            ps->data[ps->size].VcpScore = 60;
+        else if ((ps->data[ps->size].vcp >= 3001) && (ps->data[ps->size].vcp <= 3400))
+            ps->data[ps->size].VcpScore = 80;
+        else
+            ps->data[ps->size].VcpScore = 100;
+
+        if (ps->data[ps->size].PullSit <= 24)
+            ps->data[ps->size].PullSitScore = 30;
+        else if((ps->data[ps->size].PullSit >= 25) && (ps->data[ps->size].PullSit <= 52))
+            ps->data[ps->size].PullSitScore = 60;
+        else if((ps->data[ps->size].PullSit >= 53) && (ps->data[ps->size].PullSit <= 56))
+            ps->data[ps->size].PullSitScore = 80;
+        else
+            ps->data[ps->size].PullSitScore = 100;
     }
 
-    if ( 0 == strcmp(ps->data[ps->size].sex,"女")) {
-        if (ps->data[ps->size].vcp <= 2050) {
-            ps->data[ps->size].VcpScore = 30;
-        }
-        if ((ps->data[ps->size].vcp >= 2051) && (ps->data[ps->size].vcp <= 3000)) {
-            ps->data[ps->size].VcpScore = 60;
-        }
-        if ((ps->data[ps->size].vcp >= 3001) && (ps->data[ps->size].vcp <= 3400)) {
-            ps->data[ps->size].VcpScore = 80;
-        }
-        if (ps->data[ps->size].vcp > 3400) {
-            ps->data[ps->size].VcpScore = 100;
-        }
-
-        if (ps->data[ps->size].PullSit <= 24) {
-            ps->data[ps->size].PullSitScore = 30;
-        }
-        if ((ps->data[ps->size].PullSit >= 25) && (ps->data[ps->size].PullSit <= 52)) {
-            ps->data[ps->size].PullSitScore = 60;
-        }
-        if ((ps->data[ps->size].PullSit >= 53) && (ps->data[ps->size].PullSit <= 56)) {
-            ps->data[ps->size].PullSitScore = 80;
-        }
-        if (ps->data[ps->size].PullSit > 56){
-            ps->data[ps->size].PullSitScore = 100;
-        }
-    }
-
-    ps->data[ps->size].Score = ps->data[ps->size].BimScore*0.25f+
-                               ps->data[ps->size].VcpScore*0.35f+
-                               ps->data[ps->size].PullSitScore*0.4f;
+    ps->data[ps->size].Score = (float)ps->data[ps->size].BimScore*0.25f+
+            (float)ps->data[ps->size].VcpScore*0.35f+
+            (float)ps->data[ps->size].PullSitScore*0.4f;
     if(ps->data[ps->size].Score<60){
         strcpy(ps->data[ps->size].ScoreRank,"fail");
     }if((ps->data[ps->size].Score>=60)&&(ps->data[ps->size].Score<=79)){
@@ -242,15 +232,31 @@ static void print(const struct ScoreLib* ps, int pos) {
     if (-1 == pos) {
         printf("要查找的人不存在\n");
     } else {
-        printf("%10s|\t%10s|\t%6s|\t%10.1f|\t%8d|\t%10d|\t%10s|\t%10.1f\n",
-               ps->data[pos].id,
-               ps->data[pos].name,
-               ps->data[pos].sex,
-               ps->data[pos].bim,
-               ps->data[pos].vcp,
-               ps->data[pos].PullSit,
-               ps->data[pos].ScoreRank,
-               ps->data[pos].Score);
+        if (0== strcmp(ps->data[pos].sex,"男")){
+            printf("%10s|\t%8s|\t%5s|\t%5.1f|\t%6d|\t%9d|\t%9s|\t%9s|\t%5.1f\n"
+                   "------------------------------------------------------------------------------------------------------------\n",
+                   ps->data[pos].id,
+                   ps->data[pos].name,
+                   ps->data[pos].sex,
+                   ps->data[pos].bim,
+                   ps->data[pos].vcp,
+                   ps->data[pos].PullSit,
+                   "\\",
+                   ps->data[pos].ScoreRank,
+                   ps->data[pos].Score);
+        }else{
+            printf("%10s|\t%8s|\t%5s|\t%5.1f|\t%6d|\t%9s|\t%9d|\t%9s|\t%5.1f\n"
+                   "------------------------------------------------------------------------------------------------------------\n",
+                   ps->data[pos].id,
+                   ps->data[pos].name,
+                   ps->data[pos].sex,
+                   ps->data[pos].bim,
+                   ps->data[pos].vcp,
+                   "\\",
+                   ps->data[pos].PullSit,
+                   ps->data[pos].ScoreRank,
+                   ps->data[pos].Score);
+        }
     }
 }
 void SearchById(const struct ScoreLib* ps){
@@ -261,8 +267,8 @@ void SearchById(const struct ScoreLib* ps){
     scanf("%s",id);
     pos = FindById(ps,id);
     if(-1!= pos){
-        printf("%10s|\t%10s|\t%6s|\t%10s|\t%8s|\t%10s|\t%10s\n",
-               "学号", "名字", "性别", "BIM", "肺活量", "引体或仰卧", "成绩");
+        printf("%10s|\t%8s|\t%5s|\t%5s|\t%6s|\t%9s|\t%9s|\t%9s|\t%5s\n",
+               "学号","名字","性别","BIM","肺活量","引体向上","仰卧起坐","成绩","分数");
         print(ps,pos);
     }else{
         printf("该同学信息未录入\n");
@@ -279,8 +285,8 @@ void SearchByName(const struct ScoreLib* ps){
 
     pos = FindByName(ps,name);
     if (-1 != pos){
-        printf("%10s|\t%10s|\t%6s|\t%10s|\t%8s|\t%10s|\t%10s|\t%10s\n",
-               "学号", "名字", "性别", "BIM", "肺活量", "引体或仰卧", "成绩","分数");
+        printf("%10s|\t%8s|\t%5s|\t%5s|\t%6s|\t%9s|\t%9s|\t%9s|\t%5s\n",
+               "学号","名字","性别","BIM","肺活量","引体向上","仰卧起坐","成绩","分数");
         print(ps,pos);
     }else{
         printf("该同学信息未录入\n");
@@ -290,20 +296,25 @@ void SearchByName(const struct ScoreLib* ps){
 void SearchByScoreRank(const struct ScoreLib* ps){
     char score[10];
     int cnt=0;
-    printf("请输入需要查找人的成绩等级(psss/ good...):>");
+    printf("请输入需要查找人的成绩等级(pass/ good...):>");
+    one:
     scanf("%s",score);
-
-    printf("%10s|\t%10s|\t%6s|\t%10s|\t%8s|\t%10s|\t%10s|\t%10s\n",
-           "学号", "名字", "性别", "BIM", "肺活量", "引体或仰卧", "成绩","分数");
-    for (int i = 0; i < ps->size; ++i) {
-        if(0==strcmp(ps->data[i].ScoreRank,score)){
-            print(ps,i);
-            cnt++;
+    if((0==strcmp(score,"fail"))||(0==strcmp(score,"pass"))||(0==strcmp(score,"good"))||(0==strcmp(score,"excellent"))){
+        printf("%10s|\t%8s|\t%5s|\t%5s|\t%6s|\t%9s|\t%9s|\t%9s|\t%5s\n",
+               "学号","名字","性别","BIM","肺活量","引体向上","仰卧起坐","成绩","分数");
+        for (int i = 0; i < ps->size; ++i) {
+            if(0==strcmp(ps->data[i].ScoreRank,score)){
+                print(ps,i);
+                cnt++;
+            }
         }
+        printf("搜索完成，有%d个学生符合要求\n",cnt);
+    }else {
+        printf("输入格式错误,重新输入:>\n");
+        goto one;//跳到输入代码
     }
-    printf("搜索完成，有%d个学生符合要求\n",cnt);
 }
-// 按成绩(分数)排序
+
 void SearchByScore(const struct ScoreLib* ps){
     float score = 0.0f;
     int pos[ps->size];
@@ -319,8 +330,8 @@ void SearchByScore(const struct ScoreLib* ps){
     if(cnt==0){
         printf("没有分数为%.1f的学生,请重新查找\n",score);
     }else{
-        printf("%10s|\t%10s|\t%6s|\t%10s|\t%8s|\t%10s|\t%10s|\t%10s\n",
-               "学号", "名字", "性别", "BIM", "肺活量", "引体或仰卧", "成绩","分数");
+        printf("%10s|\t%8s|\t%5s|\t%5s|\t%6s|\t%9s|\t%9s|\t%9s|\t%5s\n",
+               "学号","名字","性别","BIM","肺活量","引体向上","仰卧起坐","成绩","分数");
         for (int i = 0; i < cnt; ++i) {
             print(ps,pos[i]);
         }
@@ -336,7 +347,7 @@ void ModifyScoreLib(struct ScoreLib* ps){
     if (pos == -1){
         printf("要修改人的信息不存在\n");
     }else {
-        printf("输入 y/n 再次确认:>");
+        printf("提示:输入 y/n 再次确认是否修改:>");
         scanf(" %c", &tmp);
         if (('y' == tmp) || ('Y' == tmp)) {
             printf("请输入学号:>");
@@ -359,46 +370,39 @@ void ModifyScoreLib(struct ScoreLib* ps){
     }
 }
 
+
+static int CmpScore(const void*e1,const void*e2){
+    if(((struct StuInfo*)e1)->Score==((struct StuInfo*)e2)->Score)
+        return 0;
+    else if (((struct StuInfo*)e1)->Score > ((struct StuInfo*)e2)->Score)
+        return -1;
+    else return 1;
+}
+static int CmpId(const void*e1,const void*e2){
+    return strcmp(((struct StuInfo*)e1)->id,((struct StuInfo*)e2)->id);
+}
+static int CmpName(const void*e1,const void*e2){
+    return strcmp(((struct StuInfo*)e1)->name,((struct StuInfo*)e2)->name);
+}
+
+//以下为排序模块
+// 按成绩(分数)排序
 void SortByScore(struct ScoreLib* ps){
-    struct StuInfo tmp;
-    for (int j = 0; j < ps->size-1; ++j) {
-        for (int i = 0; i < ps->size-1-j; ++i) {
-            if(ps->data[i].Score < ps->data[i+1].Score){
-                tmp = ps->data[i];
-                ps->data[i] = ps->data[i+1];
-                ps->data[i+1] = tmp;
-            }
-        }
-    }
-    printf("分数排序已完成\n");
+    qsort(ps->data,ps->size, sizeof(struct StuInfo),CmpScore);
+    printf("按总成绩排序已完成，按 6 可查看排序结果\n");
 }
-
-static int cmpid1(const void* a, const void* b){
-    struct StuInfo* ps1 = (struct StuInfo*)a;
-    struct StuInfo* ps2 = (struct StuInfo*)b;
-    if(strcmp(ps1->id, ps2->id) != 0){
-        return strcmp(ps1->id , ps2->id);
-    }
-}
-static int cmpid2(const void* a, const void* b){
-    struct StuInfo* ps1 = (struct StuInfo*)a;
-    struct StuInfo* ps2 = (struct StuInfo*)b;
-    if(strcmp(ps1->name, ps2->name) != 0){
-        return strcmp(ps1->name , ps2->name);
-    }
-}
-
 //按学号排序
 void SortById(struct ScoreLib* ps){
-    qsort(ps->data,ps->size,sizeof(struct StuInfo), cmpid1);
-    printf("学号排序完成\n");
+    qsort(ps->data,ps->size,sizeof(struct StuInfo), CmpId);
+    printf("按学号排序已完成，按 6 可查看排序结果\n");
 }
 //按姓名排序
 void SortByName(struct ScoreLib* ps){
-    qsort(ps->data,ps->size,sizeof(struct StuInfo), cmpid2);
-    printf("名字排序完成\n");
+    qsort(ps->data,ps->size,sizeof(struct StuInfo), CmpName);
+    printf("按名字排序已完成，按 6 可查看排序结果\n");
 }
-//统计功能
+
+//统计模块
 void StatisticScore(const struct ScoreLib* ps){//返回bim数据最大\小\平均值
     int ContMale=0,ContFemale=0;
     float arr[3][3]={0};
@@ -496,23 +500,30 @@ void StatisticScore(const struct ScoreLib* ps){//返回bim数据最大\小\平均值
         }aver = sum / (float)SumStu;
         arr[2][2] = aver;
 
-        printf("--------以下是总分数在%.1f~%.1f的统计表--------\n",start,end);
-        printf("\t男生人数|\t女生人数|\n");
-        printf("\t%d人\t\t%d人  \n",ContMale,ContFemale);
-        printf("-------------------------------------------------\n");
+        printf("\t\t--------以下是总分数在%.1f~%.1f的统计表--------\n",start,end);
+        printf("\t\t\t男生人数|\t女生人数|\n");
+        printf("\t\t\t%d人\t\t%d人  \n",ContMale,ContFemale);
+        printf("-------------------------------------------------详细信息如下\n");
 
-        printf("\t%8s|\t%6s|\t%8s\n",
+        printf("%10s|\t%8s|\t%5s|\t%5s|\t%6s|\t%9s|\t%9s|\t%9s|\t%5s\n",
+               "学号","名字","性别","BIM","肺活量","引体向上","仰卧起坐","成绩","分数");
+        for (int i = 0; i < SumStu; ++i) {
+            print(ps,pos[i]);
+        }
+
+
+        printf("\t\t\t%8s|\t%6s|\t%8s\n",
                "体重指数","肺活量","仰卧起坐/引体向上");
-        printf("-------------------------------------------------\n");
+        printf("\t\t-------------------------------------------------\n");
 
-        printf("最大值|\t%8.1f|\t%6.1f|\t%8.1f\n",arr[0][0],arr[1][0],arr[2][0]);
-        printf("-------------------------------------------------\n");
+        printf("\t\t最大值|\t%8.1f|\t%6.1f|\t%8.1f\n",arr[0][0],arr[1][0],arr[2][0]);
+        printf("\t\t-------------------------------------------------\n");
 
-        printf("最小值|\t%8.1f|\t%6.1f|\t%8.1f\n",arr[0][1],arr[1][1],arr[2][1]);
-        printf("-------------------------------------------------\n");
+        printf("\t\t最小值|\t%8.1f|\t%6.1f|\t%8.1f\n",arr[0][1],arr[1][1],arr[2][1]);
+        printf("\t\t-------------------------------------------------\n");
 
-        printf("平均值|\t%8.1f|\t%6.1f|\t%8.1f\n",arr[0][2],arr[1][2],arr[2][2]);
-        printf("-------------------------------------------------\n");
+        printf("\t\t平均值|\t%8.1f|\t%6.1f|\t%8.1f\n",arr[0][2],arr[1][2],arr[2][2]);
+        printf("\t\t-------------------------------------------------\n");
         printf("加载完成\n");
     }else{
         printf("无法查询，请重新输入\n");
