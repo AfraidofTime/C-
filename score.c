@@ -26,7 +26,7 @@ void CheckCapacity(struct ScoreLib* ps) {
         struct StuInfo* ptr = realloc(ps->data,(ps->capacity+2)*sizeof(struct StuInfo));
         if(ptr != NULL){
             ps->data = ptr;
-            ps->capacity += 10;
+            ps->capacity += 2;
             printf("增容成功\n");
         }
         else{
@@ -468,7 +468,7 @@ void StatisticScore(const struct ScoreLib* ps){//返回bim数据最大\小\平均值
         }arr[1][0] = max;
         //vcp min
         min = ps->data[pos[0]].vcp;
-        for (int i = 1; i < ps->size; ++i) {
+        for (int i = 1; i < SumStu; ++i) {
             if (min > ps->data[pos[i]].vcp) {
                 min = ps->data[pos[i]].vcp;
             }

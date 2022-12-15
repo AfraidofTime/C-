@@ -38,7 +38,7 @@ void loginMenu(){
 }
 void SelectMenu1() {                      		 //打印老师菜单
     printf("\n");
-    printf("         ┌─────────欢迎使用体测成绩判定系统────────┐     \n");
+    printf("         ┌────────欢迎使用体测成绩判定系统────┐     \n");
     printf("         │                                          \n");
     printf("         │            请选择操作项目：                 \n");
     printf("         │\t1.录入信息          2.修改信息             \n");
@@ -50,23 +50,23 @@ void SelectMenu1() {                      		 //打印老师菜单
 }
 void PrintMenuSort1() {                      		 //打印排序菜单
     printf("\n");
-    printf("         ┌──────学生信息排序菜单──────────┐       \n");
+    printf("         ┌─────────排序选择菜单────────┐       \n");
     printf("         │                                          \n");
     printf("         │            请选择排序方式                   \n");
     printf("         │\t1.按学号            2.按姓名(拼音)               \n");
-    printf("         │\t3.按总分(升序)        6.显示排序后信息              \n");
+    printf("         │\t3.按总分(升序)      6.显示排序后信息              \n");
     printf("         │\t0.将返回                                 \n");
     printf("         └─────────────────────────────┘         \n");
 }
 void SearchMenu(){
     printf("\n");
-    printf("         ┌───────────学生信息查找菜单─────┐       \n");
+    printf("         ┌───────────查询选择菜单────────┐       \n");
     printf("         │                                     \n");
     printf("         │            请选择查找方式              \n");
     printf("         │\t1.按学号            2.按姓名          \n");
-    printf("         │\t3.按总分数          4.按成绩等级(good/pass...)\n");
-    printf("         │\t0.将返回                           \n");
-    printf("         └─────────────────────────────┘        \n");
+    printf("         │\t3.按总分数          4.按成绩等级\n");
+    printf("         │\t0.将返回            (good/pass...)     \n");
+    printf("         └───────────────────────────────┘        \n");
 }
 
 int main(){
