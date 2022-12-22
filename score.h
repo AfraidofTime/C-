@@ -62,14 +62,20 @@ struct ScoreLib{
     int size;//记录当前学生人数
 };
 //声明函数
+//判断输入是否合法
+void judge_format(int* p);
 //初始化数据库lib
 void InitScoreLib(struct ScoreLib* ps);
+//添加学生信息
 void AddScoreLib2(struct ScoreLib* ps);
+//打印学生信息
 void ShowScoreLib(const struct ScoreLib* ps);
+//删除学生信息
 void DelScoreLib(struct ScoreLib* ps);
-
+//参照函数
+void SearchById(const struct ScoreLib* ps);
+void SearchByName(const struct ScoreLib* ps);
 void SearchByScore(const struct ScoreLib* ps);
-
 void SearchByScoreRank(const struct ScoreLib* ps);
 //修改学生体育成绩
 void ModifyScoreLib(struct ScoreLib* ps);
@@ -89,9 +95,8 @@ void SaveScoreLib(struct ScoreLib* ps);
 void LoadScoreLib(struct ScoreLib* ps);
 //清屏
 void clear();
-void SearchById(const struct ScoreLib* ps);
-void SearchByName(const struct ScoreLib* ps);
-void SearchByScore(const struct ScoreLib* ps);
+
+
 
 
 

@@ -3,6 +3,23 @@
 //
 #include "score.h"
 
+void judge_format(int* p){
+    int ch, n;
+
+    n = scanf("%d", p);
+    while(n == 0){
+        fprintf(stderr,">错误输入，我无法识别哦\n");
+        do {
+            ch = getchar();
+        }while((ch != EOF) && (ch != '\n'));
+
+        n = scanf("%d",p);
+    }
+    if(n != 1){
+        fprintf(stderr,">我读入失败哦\n");
+        exit(EXIT_FAILURE);
+    }
+}
 static int FindById(const struct ScoreLib* ps,char id[]){
     for (int i = 0; i < ps->size; ++i) {
         if(0==strcmp(ps->data[i].id,id)){
@@ -261,7 +278,6 @@ static void print(const struct ScoreLib* ps, int pos) {
 }
 void SearchById(const struct ScoreLib* ps){
     char id[MAX_ID];
-    char cmd;
     int pos = 0;
     printf("请输入需要查找的学号:>");
     scanf("%s",id);
@@ -278,7 +294,6 @@ void SearchById(const struct ScoreLib* ps){
 
 void SearchByName(const struct ScoreLib* ps){
     char name[MAX_NAME];
-    char cmd;
     int pos = 0;
     printf("请输入需要查找的名字:>");
     scanf("%s",name);
@@ -408,10 +423,10 @@ void StatisticScore(const struct ScoreLib* ps){//返回bim数据最大\小\平均值
     float arr[3][3]={0};
     float start=0.0f;float end=0.0f;
 
-    float max = 0;
-    float min = 0;
-    float aver = 0;
-    float sum = 0;
+    float max = 0.0f;
+    float min = 0.0f;
+    float aver = 0.0f;
+    float sum = 0.0f;
     int SumStu = 0;
     int pos[ps->size];//记录符合要求的下标
     //2.统计总成绩在不同分数段男女生人数,打印数据

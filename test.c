@@ -83,7 +83,7 @@ int main(){
     do {
         SelectMenu1();
         printf("请选择:>");
-        scanf("%d",&input);
+        judge_format(&input);
         switch (input) {
             case ADD:
                 AddScoreLib2(&score);
@@ -98,7 +98,7 @@ int main(){
                 do{
                     SearchMenu();
                     printf("请选择:>");
-                    scanf("%d",&input3);
+                    judge_format(&input3);
                     switch(input3){
                         case EXIT2:
                             printf("退出修改模块\n");
@@ -124,7 +124,8 @@ int main(){
                 do {
                     PrintMenuSort1();
                     printf("请选择:>");
-                    scanf("%d",&input2);
+                    //在judge_format函数中读入input值，并判断是否合法
+                    judge_format(&input2);
                     switch (input2){
                         case SORT_BY_ID:
                             SortById(&score);
