@@ -36,7 +36,6 @@ static int FindByName(const struct ScoreLib* ps,char name[]){
     }
     return -1;//如果找不到返回-1
 }
-
 void CheckCapacity(struct ScoreLib* ps) {
     if(ps->size == ps->capacity){
         //增容
@@ -51,7 +50,6 @@ void CheckCapacity(struct ScoreLib* ps) {
         }
     }
 }
-
 void InitScoreLib(struct ScoreLib* ps){
     ps->data = (struct StuInfo*)malloc(DEFAULT_SIZE*sizeof(struct StuInfo));
     if (ps->data == NULL){
@@ -62,7 +60,6 @@ void InitScoreLib(struct ScoreLib* ps){
     //把文件已经存放的信息加载到数据库中struct ScoreLib score中
     LoadScoreLib(ps);
 }
-
 void LoadScoreLib(struct ScoreLib* ps){
     struct StuInfo tmp = {0};
     FILE* pfRead = fopen("ScoreLib.dat","rb");
@@ -150,7 +147,6 @@ static void AddScoreLib1(struct ScoreLib* ps){
     ps->size++;
     printf("学生体测信息添加成功\n");
 }
-
 void AddScoreLib2(struct ScoreLib* ps) {
     //判断是否存在该学号
     char id[MAX_ID];
@@ -178,7 +174,6 @@ void AddScoreLib2(struct ScoreLib* ps) {
     }
 }
 
-
 //打印学生体育成绩
 void ShowScoreLib(const struct ScoreLib* ps){
     if (ps->size ==0){
@@ -186,13 +181,13 @@ void ShowScoreLib(const struct ScoreLib* ps){
     }
     else{
         printf("---------------------------------------学生体测成绩单-------------------------------------------------------\n");
-        printf("%10s|\t%8s|\t%5s|\t%5s|\t%6s|\t%9s|\t%9s|\t%9s|\t%5s\n",
+        printf("%14s|\t%8s|\t%5s|\t%5s|\t%6s|\t%9s|\t%9s|\t%9s|\t%5s\n",
                        "学号","名字","性别","BIM","肺活量","引体向上","仰卧起坐","成绩","分数");
         printf("----------------------------------------------------------------------------------------------------------\n");
 
         for (int i = 0; i < ps->size; ++i) {
             if (0== strcmp(ps->data[i].sex,"男")){
-                printf("%10s|\t%8s|\t%5s|\t%5.1f|\t%6d|\t%9d|\t%9s|\t%9s|\t%5.1f\n"
+                printf("%14s|\t%8s|\t%5s|\t%5.1f|\t%6d|\t%9d|\t%9s|\t%9s|\t%5.1f\n"
                        "----------------------------------------------------------------------------------------------------------\n",
                        ps->data[i].id,
                        ps->data[i].name,
@@ -204,7 +199,7 @@ void ShowScoreLib(const struct ScoreLib* ps){
                        ps->data[i].ScoreRank,
                        ps->data[i].Score);
             }else{
-                printf("%10s|\t%8s|\t%5s|\t%5.1f|\t%6d|\t%9s|\t%9d|\t%9s|\t%5.1f\n"
+                printf("%14s|\t%8s|\t%5s|\t%5.1f|\t%6d|\t%9s|\t%9d|\t%9s|\t%5.1f\n"
                        "------------------------------------------------------------------------------------------------------------\n",
                        ps->data[i].id,
                        ps->data[i].name,
@@ -250,7 +245,7 @@ static void print(const struct ScoreLib* ps, int pos) {
         printf("要查找的人不存在\n");
     } else {
         if (0== strcmp(ps->data[pos].sex,"男")){
-            printf("%10s|\t%8s|\t%5s|\t%5.1f|\t%6d|\t%9d|\t%9s|\t%9s|\t%5.1f\n"
+            printf("%14s|\t%8s|\t%5s|\t%5.1f|\t%6d|\t%9d|\t%9s|\t%9s|\t%5.1f\n"
                    "------------------------------------------------------------------------------------------------------------\n",
                    ps->data[pos].id,
                    ps->data[pos].name,
@@ -262,7 +257,7 @@ static void print(const struct ScoreLib* ps, int pos) {
                    ps->data[pos].ScoreRank,
                    ps->data[pos].Score);
         }else{
-            printf("%10s|\t%8s|\t%5s|\t%5.1f|\t%6d|\t%9s|\t%9d|\t%9s|\t%5.1f\n"
+            printf("%14s|\t%8s|\t%5s|\t%5.1f|\t%6d|\t%9s|\t%9d|\t%9s|\t%5.1f\n"
                    "------------------------------------------------------------------------------------------------------------\n",
                    ps->data[pos].id,
                    ps->data[pos].name,
@@ -283,7 +278,7 @@ void SearchById(const struct ScoreLib* ps){
     scanf("%s",id);
     pos = FindById(ps,id);
     if(-1!= pos){
-        printf("%10s|\t%8s|\t%5s|\t%5s|\t%6s|\t%9s|\t%9s|\t%9s|\t%5s\n",
+        printf("%14s|\t%8s|\t%5s|\t%5s|\t%6s|\t%9s|\t%9s|\t%9s|\t%5s\n",
                "学号","名字","性别","BIM","肺活量","引体向上","仰卧起坐","成绩","分数");
         print(ps,pos);
     }else{
@@ -300,7 +295,7 @@ void SearchByName(const struct ScoreLib* ps){
 
     pos = FindByName(ps,name);
     if (-1 != pos){
-        printf("%10s|\t%8s|\t%5s|\t%5s|\t%6s|\t%9s|\t%9s|\t%9s|\t%5s\n",
+        printf("%14s|\t%8s|\t%5s|\t%5s|\t%6s|\t%9s|\t%9s|\t%9s|\t%5s\n",
                "学号","名字","性别","BIM","肺活量","引体向上","仰卧起坐","成绩","分数");
         print(ps,pos);
     }else{
@@ -315,7 +310,7 @@ void SearchByScoreRank(const struct ScoreLib* ps){
     one:
     scanf("%s",score);
     if((0==strcmp(score,"fail"))||(0==strcmp(score,"pass"))||(0==strcmp(score,"good"))||(0==strcmp(score,"excellent"))){
-        printf("%10s|\t%8s|\t%5s|\t%5s|\t%6s|\t%9s|\t%9s|\t%9s|\t%5s\n",
+        printf("%14s|\t%8s|\t%5s|\t%5s|\t%6s|\t%9s|\t%9s|\t%9s|\t%5s\n",
                "学号","名字","性别","BIM","肺活量","引体向上","仰卧起坐","成绩","分数");
         for (int i = 0; i < ps->size; ++i) {
             if(0==strcmp(ps->data[i].ScoreRank,score)){
@@ -345,7 +340,7 @@ void SearchByScore(const struct ScoreLib* ps){
     if(cnt==0){
         printf("没有分数为%.1f的学生,请重新查找\n",score);
     }else{
-        printf("%10s|\t%8s|\t%5s|\t%5s|\t%6s|\t%9s|\t%9s|\t%9s|\t%5s\n",
+        printf("%14s|\t%8s|\t%5s|\t%5s|\t%6s|\t%9s|\t%9s|\t%9s|\t%5s\n",
                "学号","名字","性别","BIM","肺活量","引体向上","仰卧起坐","成绩","分数");
         for (int i = 0; i < cnt; ++i) {
             print(ps,pos[i]);
@@ -520,7 +515,7 @@ void StatisticScore(const struct ScoreLib* ps){//返回bim数据最大\小\平均值
         printf("\t\t\t%d人\t\t%d人  \n",ContMale,ContFemale);
         printf("-------------------------------------------------详细信息如下\n");
 
-        printf("%10s|\t%8s|\t%5s|\t%5s|\t%6s|\t%9s|\t%9s|\t%9s|\t%5s\n",
+        printf("%14s|\t%8s|\t%5s|\t%5s|\t%6s|\t%9s|\t%9s|\t%9s|\t%5s\n",
                "学号","名字","性别","BIM","肺活量","引体向上","仰卧起坐","成绩","分数");
         for (int i = 0; i < SumStu; ++i) {
             print(ps,pos[i]);

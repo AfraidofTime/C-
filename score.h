@@ -2,7 +2,7 @@
 // Created by Echo on 2022/12/11.
 //
 
-#define MAX_ID 14
+#define MAX_ID 20
 #define MAX_NAME 20
 #define MAX_SEX 10
 #define DEFAULT_SIZE 20 //默认空间大小
@@ -72,7 +72,7 @@ void AddScoreLib2(struct ScoreLib* ps);
 void ShowScoreLib(const struct ScoreLib* ps);
 //删除学生信息
 void DelScoreLib(struct ScoreLib* ps);
-//参照函数
+//寻找函数
 void SearchById(const struct ScoreLib* ps);
 void SearchByName(const struct ScoreLib* ps);
 void SearchByScore(const struct ScoreLib* ps);

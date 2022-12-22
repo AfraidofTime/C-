@@ -98,6 +98,7 @@ int main(){
                 do{
                     SearchMenu();
                     printf("请选择:>");
+                    //在judge_format函数中读入input值，并判断是否合法
                     judge_format(&input3);
                     switch(input3){
                         case EXIT2:
