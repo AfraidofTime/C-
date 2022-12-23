@@ -1,6 +1,7 @@
 //
 // Created by Echo on 2022/12/11.
 //
+#define _CRT_SECURE_NO_WARNINGS 1
 
 #include "score.h"
 

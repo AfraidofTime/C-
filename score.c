@@ -1,6 +1,8 @@
 //
 // Created by Echo on 2022/12/11.
 //
+#define _CRT_SECURE_NO_WARNINGS 1
+
 #include "score.h"
 
 void judge_format(int* p){
@@ -327,7 +329,7 @@ void SearchByScoreRank(const struct ScoreLib* ps){
 
 void SearchByScore(const struct ScoreLib* ps){
     float score = 0.0f;
-    int pos[ps->size];
+    int pos[100];
     int cnt =0;//记录下符合条件的学生在数据库中的下标
     printf("请输入需要查找人的分数:>");
     scanf("%f",&score);
@@ -423,7 +425,7 @@ void StatisticScore(const struct ScoreLib* ps){//返回bim数据最大\小\平均值
     float aver = 0.0f;
     float sum = 0.0f;
     int SumStu = 0;
-    int pos[ps->size];//记录符合要求的下标
+    int pos[100];//记录符合要求的下标
     //2.统计总成绩在不同分数段男女生人数,打印数据
     printf("输入统计的分数段起点:>");
     scanf("%f",&start);
